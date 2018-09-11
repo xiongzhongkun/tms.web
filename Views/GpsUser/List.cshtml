@@ -1,0 +1,277 @@
+﻿@{
+    ViewData["Title"] = "GPS用户管理";
+}
+@model tms.Models.GpsUser
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="page-content">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="/home/index">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">用户管理</a>
+                    </li>
+
+                </ul><!-- /.breadcrumb -->
+            </div>
+            <!-- /放搜索控件
+            <div class="page-header">
+
+            </div> -->
+
+            <div class="col-xs-5" style="padding-top:8px;">
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="ace-icon fa fa-check"></i>
+                    </span>
+
+                    <input type="text" class="form-control search-query" id="txtkeyword" placeholder="搜索" onkeypress="if(event.keyCode==13) {Search_click();return false;}" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-purple btn-sm" onclick="Search_click()">
+                            <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                            查询
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-7" style="padding-top:8px;">
+                <div class="input-group pull-right">
+                    <span class="input-group-btn">
+                        <a role="button" class="btn btn-success btn-sm pull-right" data-toggle="modal" href="javascript:void(0)" onclick="NewModal_click()">
+                            <span class="ace-icon fa fa-pencil-square-o icon-on-right bigger-110"></span>
+                            新增
+                        </a>
+
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="clearfix">
+                                <div class="pull-right tableTools-container"></div>
+                            </div>
+                            <!-- div.table-responsive -->
+                            <!-- div.dataTables_borderWrap -->
+                            <div>
+                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>单位全称</th>
+                                            <th>单位信用代码</th>
+                                            <th>单位余额</th>
+                                            <th>单位状态</th>
+                                            <th>联系人</th>
+                                            <th>联系号码</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                <!-- PAGE CONTENT ENDS -->
+            </div><!-- /.col -->
+        </div>
+
+        <!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+
+<!--列表页简单新增内容-->
+<div id="my-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="smaller lighter blue no-margin">新增用户</h3>
+            </div>
+        
+            <form class="form-horizontal" action="/gpsuser/save" data-ajax="true" data-ajax-begin="ajax_OnBegin" data-ajax-complete="ajax_OnComplete" data-ajax-failure="failed_resp" data-ajax-method="POST" data-ajax-success="handle_resp" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label " for="form-field-1"> 单位全称： </label>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(m => m.UserName, new { @id = "username", @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入单位全称" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label " for="form-field-1"> 单位简称： </label>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(m => m.UserShortname, new { @id = "usershortname", @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入单位简称" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label " for="form-field-1"> 单位信用代码： </label>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(m => m.UserCode, new { @id = "usercode", @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入单位信用代码" })
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" value="" id="hdn_company" name="hdn_company" />
+                <input type="hidden" value="dynamic-table" name="hdn_target" />
+                <input type="hidden" value="新增成功" name="hdn_msg" />
+                <input type="hidden" value="列表" name="hdn_targetType" />
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-info" type="submit">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Save（保存）
+                    </button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Close（关闭）
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!--End 列表页简单新增内容-->
+@section Scripts {
+    <script src="~/ace/js/jquery.dataTables.min.js"></script>
+    <script src="~/ace/js/jquery.dataTables.bootstrap.min.js"></script>
+    <script src="~/ace/js/dataTables.select.min.js"></script>
+    <script src="~/ace/js/dataTables.buttons.min.js"></script>
+    <script>
+        function NewModal_click() {
+            $('#my-modal #username').val("");
+            $('#my-modal #usershortname').val("");
+            $('#my-modal #usercode').val("");
+
+            $('#my-modal').modal('show');
+        }
+
+
+        var _dynamicTable = $('#dynamic-table').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "ordering": false,
+            "pagingType": "full_numbers",
+            "language": {
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "目前还没有任何数据",
+                "info": "当前第：_PAGE_ 页 共：_PAGES_ 页",
+                "infoEmpty": "目前还没有任何数据",
+                "sSearch": "搜索",
+                "oPaginate": {
+                    "sFirst": "第一页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "最后一页"
+                }
+            },
+            "ajax": {
+                "url": "/gpsuser/getlist?keyword=",
+                "type": "POST"
+            },
+            "columns": [
+                {
+                    "data": "UserId", "render": function (value, style, item, col) {
+                        return col.row + 1;
+                    }
+                },
+                {
+                    "data": "UserName"
+                },
+                {
+                    "data": "UserCode"
+                },
+                {
+                    "data": "UserBalance"
+                },
+                {
+                    "data": "UserStatus"
+                },
+                {
+                    "data": "UserCon"
+                },
+                {
+                    "data": "UserConTel"
+                },
+                { "data": "UserId" }
+            ],
+            "columnDefs": [
+            {
+                "targets": -1,//-1表示最后一行
+                render: function (data, type, full, meta) {
+                    var _btns = "<div class=\"hidden-sm hidden-xs action-buttons\">";
+
+
+                    _btns += "<a class=\"green\" href=\"@Url.Action("Edit", "GpsUser")?id=" + data + "\">";
+                    _btns += "<i class=\"ace-icon fa fa-pencil bigger-130\"></i>编辑";
+                    _btns += "</a>";
+
+                    _btns += "<a class=\"red\" href=\"#\" onclick=\"dialogConfirm_click('" + data + "')\">";
+                    _btns += "<i class=\"ace-icon fa fa-trash-o bigger-130\"></i>删除";
+                    _btns += "</a>";
+
+                    _btns += "</div>";
+                    return _btns;
+             }
+            }]
+        });
+        $("#dynamic-table_length").parent().parent().hide();
+
+        function Search_click() {
+            var _keyword = $("#txtkeyword").val();
+            _dynamicTable.DataTable().ajax.url("/gpsuser/getlist?keyword=" + _keyword).load();
+        }
+
+        function deleteuser(id) {
+            $.axs('@Url.Action("Delete", "GpsUser")', { id: id }, function (data) {
+                if (data.flag) {
+                    _dynamicTable.DataTable().ajax.reload();
+                } else {
+                    bootbox.dialog({
+                        message: data.msg,
+                        buttons: {
+                            "success": {
+                                "label": "确定",
+                                "className": "btn-sm btn-primary"
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        function dialogConfirm_click(id) {
+            $("#dialog-confirm").removeClass('hide').dialog({
+                resizable: false,
+                width: '320',
+                modal: true,
+                title: "是否清空该数据？",
+                title_html: true,
+                buttons: [
+                {
+                    html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Del（删除）",
+                    "class": "btn btn-danger btn-minier",
+                    click: function () {
+                        deleteuser(id);
+                        $(this).dialog("close");
+                    }
+                }
+                ,
+                {
+                    html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancel（取消）",
+                    "class": "btn btn-minier",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                }
+                ]
+            });
+        }
+    </script>
+}

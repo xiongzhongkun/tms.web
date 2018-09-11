@@ -1,0 +1,733 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 棱镜物流服务器
+ Source Server Type    : SQL Server
+ Source Server Version : 12002000
+ Source Host           : 47.98.154.197
+ Source Database       : TMS_ADMIN
+ Source Schema         : dbo
+
+ Target Server Type    : SQL Server
+ Target Server Version : 12002000
+ File Encoding         : utf-8
+
+ Date: 08/27/2018 21:52:29 PM
+*/
+
+-- ----------------------------
+--  Table structure for GPS_USER
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID('[dbo].[GPS_USER]') AND type IN ('U'))
+	DROP TABLE [dbo].[GPS_USER]
+GO
+CREATE TABLE [dbo].[GPS_USER] (
+	[USER_ID] nvarchar(64) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[USER_NAME] nvarchar(64) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_SHORTNAME] nvarchar(32) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_CODE] nvarchar(64) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_BALANCE] decimal(16,2) NULL,
+	[USER_ADD_P] nvarchar(64) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_ADD_C] nvarchar(64) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_ADD_D] nvarchar(max) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_CON] nvarchar(32) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_CON_TEL] nvarchar(32) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_CON_EMAIL] nvarchar(64) COLLATE Chinese_PRC_CI_AS NULL,
+	[USER_STATUS] nvarchar(8) COLLATE Chinese_PRC_CI_AS NULL,
+	[EDI_STATUS] nvarchar(8) COLLATE Chinese_PRC_CI_AS NULL,
+	[ADD_TIME] datetime NULL
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+GO
+
+-- ----------------------------
+--  Records of GPS_USER
+-- ----------------------------
+BEGIN TRANSACTION
+GO
+INSERT INTO [dbo].[GPS_USER] VALUES ('86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'单位全称', N'单位简称', '1101380456743956', '999977.00', '320000000000', '320600000000', N'单位地址', N'联系人', N'联系号码', N'联系邮箱', N'正常', N'连接', null);
+GO
+COMMIT
+GO
+
+-- ----------------------------
+--  Table structure for GPS_CHARGE
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID('[dbo].[GPS_CHARGE]') AND type IN ('U'))
+	DROP TABLE [dbo].[GPS_CHARGE]
+GO
+CREATE TABLE [dbo].[GPS_CHARGE] (
+	[ID] nvarchar(64) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[USER_ID] nvarchar(64) COLLATE Chinese_PRC_CI_AS NULL,
+	[GPS_EDI_TYPE] nvarchar(32) COLLATE Chinese_PRC_CI_AS NULL,
+	[GPS_EDI_STATUS] nvarchar(8) COLLATE Chinese_PRC_CI_AS NULL,
+	[GPS_EDI_TIME] datetime NULL,
+	[GPS_EDI_VIHICLE] nvarchar(8) COLLATE Chinese_PRC_CI_AS NULL,
+	[GPS_EDI_CHARGE] decimal(16,2) NULL,
+	[GPS_EDI_ID] nvarchar(32) COLLATE Chinese_PRC_CI_AS NULL
+)
+ON [PRIMARY]
+GO
+
+-- ----------------------------
+--  Records of GPS_CHARGE
+-- ----------------------------
+BEGIN TRANSACTION
+GO
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('1a4c40e9-ba75-4273-9684-09cba4dc9613', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:09:57.173', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('2046237d-c149-4408-9c06-b3c90f8b2ac5', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:49:47.047', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('2d704ffb-e789-466c-88e3-89632c1cfc44', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:11:05.543', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('2e80e0dc-8313-454d-b919-a705a29f7376', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:28:38.967', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('88847792-afe5-486e-b287-afec0f82521c', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:27:50.397', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('8a2521a9-6b3d-41ea-8d8b-27107f586e37', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:51:11.670', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('8d25ad88-954a-4fda-9c64-bc42f91040ac', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:13:03.840', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('8eceac0e-8e8e-44b2-b4ae-df840894aa60', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:08:20.697', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('978eaa4a-affd-44cc-931c-32c895a00d4d', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:28:16.117', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('a90f2822-b15a-4737-8300-cb3226f2944d', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:50:28.330', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('b1a4deab-e110-4942-a0a4-b8d81df9e017', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:09:24.120', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('be19bba1-241e-4ec7-9709-df15fb55ea90', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:49:54.120', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_CHARGE] VALUES ('e357c117-f338-48dd-8b7d-f8a6a442e90e', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:13:40.797', N'浙cp0000', '1.00', N'接口编号');
+GO
+COMMIT
+GO
+
+-- ----------------------------
+--  Table structure for GPS_EDI
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID('[dbo].[GPS_EDI]') AND type IN ('U'))
+	DROP TABLE [dbo].[GPS_EDI]
+GO
+CREATE TABLE [dbo].[GPS_EDI] (
+	[ID] nvarchar(64) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[USER_ID] nvarchar(64) COLLATE Chinese_PRC_CI_AS NULL,
+	[GPS_EDI_TYPE] nvarchar(32) COLLATE Chinese_PRC_CI_AS NULL,
+	[GPS_EDI_STATUS] nvarchar(8) COLLATE Chinese_PRC_CI_AS NULL,
+	[GPS_EDI_TIME] datetime NULL,
+	[GPS_EDI_VIHICLE] nvarchar(8) COLLATE Chinese_PRC_CI_AS NULL,
+	[GPS_EDI_CHARGE] decimal(16,2) NULL,
+	[GPS_EDI_ID] nvarchar(32) COLLATE Chinese_PRC_CI_AS NULL
+)
+ON [PRIMARY]
+GO
+
+-- ----------------------------
+--  Records of GPS_EDI
+-- ----------------------------
+BEGIN TRANSACTION
+GO
+INSERT INTO [dbo].[GPS_EDI] VALUES ('0ecf4825-60bd-4ae3-9c77-4a02265b9cda', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:50:28.437', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('165b0e11-4f48-4723-8d3d-421d92b89a11', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:27:50.420', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('26328dc6-625d-4e5d-acda-3705eeb1fe7f', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:09:57.283', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('464c3837-4721-415d-8e18-e490330fd407', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:49:47.310', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('4c9dfb8e-cf1f-42d7-93c3-c8874370ea62', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:28:38.987', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('655ad3e5-f7a2-4287-b189-86646d791ec6', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:08:20.837', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('69031011-c18f-4002-a12b-da6f8a47e97b', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:28:16.137', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('6919c3d9-008c-4835-91a9-7dfb223cf973', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:13:04.047', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('c89159b7-9552-4154-8103-74a60cb4bf0b', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:11:05.750', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('cfbec889-7cd0-42d2-b7b3-0d416f946c96', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:09:24.327', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('d062d9db-f17a-4035-b853-29899a17605c', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:49:54.263', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('d3c1cd7d-08f4-40d7-ba3e-c8bd219c12a8', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 21:13:40.817', N'浙cp0000', '1.00', N'接口编号');
+INSERT INTO [dbo].[GPS_EDI] VALUES ('f5deca98-ece8-45ae-a5a4-e67213825eaf', '86fb5b4d-8b1f-40a1-9029-14f9cf358b87', N'接口类型', N'接口状态', '2018-08-27 14:51:11.773', N'浙cp0000', '1.00', N'接口编号');
+GO
+COMMIT
+GO
+
+-- ----------------------------
+--  Table structure for VIHICLE_DATA
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID('[dbo].[VIHICLE_DATA]') AND type IN ('U'))
+	DROP TABLE [dbo].[VIHICLE_DATA]
+GO
+CREATE TABLE [dbo].[VIHICLE_DATA] (
+	[ID] nvarchar(64) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[GPS_EDI_VIHICLE] nvarchar(8) COLLATE Chinese_PRC_CI_AS NULL,
+	[FROM_EDI] nvarchar(16) COLLATE Chinese_PRC_CI_AS NULL,
+	[FROM_USER] nvarchar(64) COLLATE Chinese_PRC_CI_AS NULL,
+	[EDI_TIMES] datetime NULL,
+	[EDI_UPDATE] datetime NULL
+)
+ON [PRIMARY]
+GO
+
+-- ----------------------------
+--  Records of VIHICLE_DATA
+-- ----------------------------
+BEGIN TRANSACTION
+GO
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('08c5aebd-4b87-481e-9b01-16583d7df14a', N'浙cp0000', null, null, '2018-08-27 21:13:40.880', '2018-08-27 21:13:40.880');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('169000ee-4dba-4d2d-a61e-71abfdedb1b8', N'浙cp0000', null, null, '2018-08-27 14:09:24.843', '2018-08-27 14:09:24.843');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('24fa76f9-fa07-4c9c-81b3-b065d071cf3e', N'浙cp0000', null, null, '2018-08-27 14:49:47.720', '2018-08-27 14:49:47.720');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('5e2af569-f6f8-47c6-a716-63f5d1090b22', N'浙cp0000', null, null, '2018-08-27 14:51:12.133', '2018-08-27 14:51:12.133');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('871c70d8-1ad2-4af4-907a-22c3f91da6f6', N'浙cp0000', null, null, '2018-08-27 14:11:06.137', '2018-08-27 14:11:06.137');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('ab2715d3-93d0-4971-9966-a53e82039700', N'浙cp0000', null, null, '2018-08-27 21:27:50.487', '2018-08-27 21:27:50.487');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('b6481dc8-4fdc-4bd4-976a-c9c3ad40fab1', N'浙cp0000', null, null, '2018-08-27 14:50:28.763', '2018-08-27 14:50:28.763');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('d4f5519f-b403-457f-bbae-902fbf880e89', N'浙cp0000', null, null, '2018-08-27 14:09:57.667', '2018-08-27 14:09:57.667');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('ddda2409-3b03-4f75-887d-288b13fa7e91', N'浙cp0000', null, null, '2018-08-27 21:13:04.160', '2018-08-27 21:13:04.160');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('eca71de4-e721-4343-90cc-dd81695d0eaf', N'浙cp0000', null, null, '2018-08-27 14:49:55.093', '2018-08-27 14:49:55.093');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('f4fa94b7-bf60-4dbb-b515-52be261693de', N'浙cp0000', null, null, '2018-08-27 14:08:21.180', '2018-08-27 14:08:21.180');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('fe25fde7-21ba-4cfa-964b-a91ad16aa509', N'浙cp0000', null, null, '2018-08-27 21:28:16.203', '2018-08-27 21:28:16.203');
+INSERT INTO [dbo].[VIHICLE_DATA] VALUES ('fec6a683-9eb1-4d6c-b6f7-7d60b85db29e', N'浙cp0000', null, null, '2018-08-27 21:28:39.053', '2018-08-27 21:28:39.053');
+GO
+COMMIT
+GO
+
+-- ----------------------------
+--  Table structure for VIHICLE_P_P
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID('[dbo].[VIHICLE_P_P]') AND type IN ('U'))
+	DROP TABLE [dbo].[VIHICLE_P_P]
+GO
+CREATE TABLE [dbo].[VIHICLE_P_P] (
+	[ID] nvarchar(64) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[GPS_EDI_VIHICLE] nvarchar(8) COLLATE Chinese_PRC_CI_AS NULL,
+	[VIHICLE_P_P_P] nvarchar(16) COLLATE Chinese_PRC_CI_AS NULL,
+	[VIHICLE_P_P_C] nvarchar(16) COLLATE Chinese_PRC_CI_AS NULL,
+	[VIHICLE_P_P_C1] nvarchar(32) COLLATE Chinese_PRC_CI_AS NULL,
+	[VIHICLE_P_P_D] nvarchar(max) COLLATE Chinese_PRC_CI_AS NULL,
+	[VIHICLE_P_P_T] datetime NULL,
+	[VIHICLE_LAT] decimal(16,0) NULL,
+	[VIHICLE_LON] decimal(16,0) NULL
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+GO
+
+-- ----------------------------
+--  Records of VIHICLE_P_P
+-- ----------------------------
+BEGIN TRANSACTION
+GO
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('1e2669a2-9777-4eba-a5b2-0676f832f91a', N'浙cp0000', null, null, null, null, '2018-08-27 14:50:28.637', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('2104d09f-dac1-4c96-9484-15c98f59124a', N'浙cp0000', null, null, null, null, '2018-08-27 21:13:40.860', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('255d30bb-c0d6-46a8-b2e3-21bb778e5ff4', N'浙cp0000', null, null, null, null, '2018-08-27 21:28:39.030', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('3849d8f0-e1d2-4197-89d7-2151f4d796c8', N'浙cp0000', null, null, null, null, '2018-08-27 14:49:54.870', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('3ab8623f-75ac-4725-984f-911d37349644', N'浙cp0000', null, null, null, null, '2018-08-27 14:11:06.007', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('53d8bf18-b7eb-4039-b9e3-1c7712fa0130', N'浙cp0000', null, null, null, null, '2018-08-27 14:51:12.013', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('845e64ac-f302-4f65-a2fc-27e97f10d4b7', N'浙cp0000', null, null, null, null, '2018-08-27 14:08:21.070', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('938f61b7-8731-42fb-a723-050bb5150661', N'浙cp0000', null, null, null, null, '2018-08-27 14:09:24.720', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('95ee8af6-6922-48bf-9e40-f455b2f53c40', N'浙cp0000', null, null, null, null, '2018-08-27 14:49:47.600', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('96721200-23ce-4383-8006-a7fad03a0ba0', N'浙cp0000', null, null, null, null, '2018-08-27 21:28:16.180', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('ac0dcd13-78b7-486f-9292-bbf3ee220cad', N'浙cp0000', null, null, null, null, '2018-08-27 21:13:04.127', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('af532ce3-a631-42af-89a6-e791763d332f', N'浙cp0000', null, null, null, null, '2018-08-27 21:27:50.463', null, null);
+INSERT INTO [dbo].[VIHICLE_P_P] VALUES ('e164f83b-085e-4dd6-8389-66f6601549fb', N'浙cp0000', null, null, null, null, '2018-08-27 14:09:57.550', null, null);
+GO
+COMMIT
+GO
+
+-- ----------------------------
+--  Table structure for PCCTV
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID('[dbo].[PCCTV]') AND type IN ('U'))
+	DROP TABLE [dbo].[PCCTV]
+GO
+CREATE TABLE [dbo].[PCCTV] (
+	[pid] nvarchar(12) COLLATE Chinese_PRC_CI_AS NULL,
+	[id] nvarchar(12) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[pcctvlevel] int NULL,
+	[pcctvname] nvarchar(30) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[classification] nvarchar(3) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[remark] nvarchar(255) COLLATE Chinese_PRC_CI_AS NULL
+)
+ON [PRIMARY]
+GO
+EXEC sp_addextendedproperty 'MS_Description', N'省、市、县城市数据', 'SCHEMA', 'dbo', 'TABLE', 'PCCTV'
+GO
+EXEC sp_addextendedproperty 'MS_Description', N'名称', 'SCHEMA', 'dbo', 'TABLE', 'PCCTV', 'COLUMN', 'pcctvname'
+GO
+
+-- ----------------------------
+--  Records of PCCTV
+-- ----------------------------
+BEGIN TRANSACTION
+GO
+INSERT INTO [dbo].[PCCTV] VALUES (null, '000000000000', '0', N'中华人民共和国', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '110000000000', '1', N'北京市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('110000000000', '110100000000', '2', N'北京市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('110000000000', '110200000000', '2', N'县', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '120000000000', '1', N'天津市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('120000000000', '120100000000', '2', N'天津市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('120000000000', '120200000000', '2', N'县', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '130000000000', '1', N'河北省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130100000000', '2', N'石家庄市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130200000000', '2', N'唐山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130300000000', '2', N'秦皇岛市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130400000000', '2', N'邯郸市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130500000000', '2', N'邢台市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130600000000', '2', N'保定市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130700000000', '2', N'张家口市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130800000000', '2', N'承德市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '130900000000', '2', N'沧州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '131000000000', '2', N'廊坊市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('130000000000', '131100000000', '2', N'衡水市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '140000000000', '1', N'山西省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140100000000', '2', N'太原市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140200000000', '2', N'大同市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140300000000', '2', N'阳泉市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140400000000', '2', N'长治市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140500000000', '2', N'晋城市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140600000000', '2', N'朔州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140700000000', '2', N'晋中市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140800000000', '2', N'运城市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '140900000000', '2', N'忻州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '141000000000', '2', N'临汾市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('140000000000', '141100000000', '2', N'吕梁市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '150000000000', '1', N'内蒙古自治区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150100000000', '2', N'呼和浩特市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150200000000', '2', N'包头市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150300000000', '2', N'乌海市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150400000000', '2', N'赤峰市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150500000000', '2', N'通辽市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150600000000', '2', N'鄂尔多斯市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150700000000', '2', N'呼伦贝尔市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150800000000', '2', N'巴彦淖尔市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '150900000000', '2', N'乌兰察布市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '152200000000', '2', N'兴安盟', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '152500000000', '2', N'锡林郭勒盟', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('150000000000', '152900000000', '2', N'阿拉善盟', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '210000000000', '1', N'辽宁省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210100000000', '2', N'沈阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210200000000', '2', N'大连市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210300000000', '2', N'鞍山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210400000000', '2', N'抚顺市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210500000000', '2', N'本溪市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210600000000', '2', N'丹东市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210700000000', '2', N'锦州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210800000000', '2', N'营口市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '210900000000', '2', N'阜新市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '211000000000', '2', N'辽阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '211100000000', '2', N'盘锦市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '211200000000', '2', N'铁岭市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '211300000000', '2', N'朝阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('210000000000', '211400000000', '2', N'葫芦岛市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '220000000000', '1', N'吉林省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '220100000000', '2', N'长春市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '220200000000', '2', N'吉林市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '220300000000', '2', N'四平市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '220400000000', '2', N'辽源市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '220500000000', '2', N'通化市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '220600000000', '2', N'白山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '220700000000', '2', N'松原市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '220800000000', '2', N'白城市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('220000000000', '222400000000', '2', N'延边朝鲜族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '230000000000', '1', N'黑龙江省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230100000000', '2', N'哈尔滨市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230200000000', '2', N'齐齐哈尔市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230300000000', '2', N'鸡西市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230400000000', '2', N'鹤岗市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230500000000', '2', N'双鸭山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230600000000', '2', N'大庆市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230700000000', '2', N'伊春市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230800000000', '2', N'佳木斯市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '230900000000', '2', N'七台河市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '231000000000', '2', N'牡丹江市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '231100000000', '2', N'黑河市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '231200000000', '2', N'绥化市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('230000000000', '232700000000', '2', N'大兴安岭地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '310000000000', '1', N'上海市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('310000000000', '310100000000', '2', N'上海市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('310000000000', '310200000000', '2', N'县', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '320000000000', '1', N'江苏省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320100000000', '2', N'南京市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320200000000', '2', N'无锡市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320300000000', '2', N'徐州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320400000000', '2', N'常州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320500000000', '2', N'苏州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320600000000', '2', N'南通市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320700000000', '2', N'连云港市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320800000000', '2', N'淮安市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '320900000000', '2', N'盐城市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '321000000000', '2', N'扬州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '321100000000', '2', N'镇江市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '321200000000', '2', N'泰州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('320000000000', '321300000000', '2', N'宿迁市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '330000000000', '1', N'浙江省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330100000000', '2', N'杭州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330200000000', '2', N'宁波市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330300000000', '2', N'温州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330400000000', '2', N'嘉兴市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330500000000', '2', N'湖州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330600000000', '2', N'绍兴市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330700000000', '2', N'金华市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330800000000', '2', N'衢州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '330900000000', '2', N'舟山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '331000000000', '2', N'台州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('330000000000', '331100000000', '2', N'丽水市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '340000000000', '1', N'安徽省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '340100000000', '2', N'合肥市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '340200000000', '2', N'芜湖市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '340300000000', '2', N'蚌埠市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '340400000000', '2', N'淮南市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '340500000000', '2', N'马鞍山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '340600000000', '2', N'淮北市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '340700000000', '2', N'铜陵市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '340800000000', '2', N'安庆市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341000000000', '2', N'黄山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341100000000', '2', N'滁州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341200000000', '2', N'阜阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341300000000', '2', N'宿州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341400000000', '2', N'巢湖市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341500000000', '2', N'六安市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341600000000', '2', N'亳州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341700000000', '2', N'池州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('340000000000', '341800000000', '2', N'宣城市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '350000000000', '1', N'福建省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350100000000', '2', N'福州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350200000000', '2', N'厦门市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350300000000', '2', N'莆田市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350400000000', '2', N'三明市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350500000000', '2', N'泉州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350600000000', '2', N'漳州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350700000000', '2', N'南平市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350800000000', '2', N'龙岩市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('350000000000', '350900000000', '2', N'宁德市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '360000000000', '1', N'江西省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360100000000', '2', N'南昌市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360200000000', '2', N'景德镇市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360300000000', '2', N'萍乡市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360400000000', '2', N'九江市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360500000000', '2', N'新余市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360600000000', '2', N'鹰潭市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360700000000', '2', N'赣州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360800000000', '2', N'吉安市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '360900000000', '2', N'宜春市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '361000000000', '2', N'抚州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('360000000000', '361100000000', '2', N'上饶市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '370000000000', '1', N'山东省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370100000000', '2', N'济南市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370200000000', '2', N'青岛市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370300000000', '2', N'淄博市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370400000000', '2', N'枣庄市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370500000000', '2', N'东营市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370600000000', '2', N'烟台市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370700000000', '2', N'潍坊市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370800000000', '2', N'济宁市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '370900000000', '2', N'泰安市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '371000000000', '2', N'威海市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '371100000000', '2', N'日照市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '371200000000', '2', N'莱芜市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '371300000000', '2', N'临沂市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '371400000000', '2', N'德州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '371500000000', '2', N'聊城市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '371600000000', '2', N'滨州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('370000000000', '371700000000', '2', N'菏泽市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '410000000000', '1', N'河南省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410100000000', '2', N'郑州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410200000000', '2', N'开封市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410300000000', '2', N'洛阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410400000000', '2', N'平顶山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410500000000', '2', N'安阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410600000000', '2', N'鹤壁市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410700000000', '2', N'新乡市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410800000000', '2', N'焦作市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '410900000000', '2', N'濮阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '411000000000', '2', N'许昌市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '411100000000', '2', N'漯河市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '411200000000', '2', N'三门峡市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '411300000000', '2', N'南阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '411400000000', '2', N'商丘市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '411500000000', '2', N'信阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '411600000000', '2', N'周口市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '411700000000', '2', N'驻马店市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('410000000000', '419000000000', '2', N'省直辖县级行政区划', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '420000000000', '1', N'湖北省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '420100000000', '2', N'武汉市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '420200000000', '2', N'黄石市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '420300000000', '2', N'十堰市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '420500000000', '2', N'宜昌市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '420600000000', '2', N'襄樊市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '420700000000', '2', N'鄂州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '420800000000', '2', N'荆门市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '420900000000', '2', N'孝感市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '421000000000', '2', N'荆州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '421100000000', '2', N'黄冈市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '421200000000', '2', N'咸宁市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '421300000000', '2', N'随州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '422800000000', '2', N'恩施土家族苗族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('420000000000', '429000000000', '2', N'省直辖县级行政区划', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '430000000000', '1', N'湖南省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430100000000', '2', N'长沙市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430200000000', '2', N'株洲市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430300000000', '2', N'湘潭市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430400000000', '2', N'衡阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430500000000', '2', N'邵阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430600000000', '2', N'岳阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430700000000', '2', N'常德市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430800000000', '2', N'张家界市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '430900000000', '2', N'益阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '431000000000', '2', N'郴州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '431100000000', '2', N'永州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '431200000000', '2', N'怀化市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '431300000000', '2', N'娄底市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('430000000000', '433100000000', '2', N'湘西土家族苗族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '440000000000', '1', N'广东省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440100000000', '2', N'广州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440200000000', '2', N'韶关市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440300000000', '2', N'深圳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440400000000', '2', N'珠海市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440500000000', '2', N'汕头市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440600000000', '2', N'佛山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440700000000', '2', N'江门市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440800000000', '2', N'湛江市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '440900000000', '2', N'茂名市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '441200000000', '2', N'肇庆市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '441300000000', '2', N'惠州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '441400000000', '2', N'梅州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '441500000000', '2', N'汕尾市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '441600000000', '2', N'河源市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '441700000000', '2', N'阳江市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '441800000000', '2', N'清远市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '441900000000', '2', N'东莞市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '442000000000', '2', N'中山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '445100000000', '2', N'潮州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '445200000000', '2', N'揭阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('440000000000', '445300000000', '2', N'云浮市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '450000000000', '1', N'广西壮族自治区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450100000000', '2', N'南宁市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450200000000', '2', N'柳州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450300000000', '2', N'桂林市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450400000000', '2', N'梧州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450500000000', '2', N'北海市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450600000000', '2', N'防城港市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450700000000', '2', N'钦州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450800000000', '2', N'贵港市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '450900000000', '2', N'玉林市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '451000000000', '2', N'百色市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '451100000000', '2', N'贺州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '451200000000', '2', N'河池市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '451300000000', '2', N'来宾市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('450000000000', '451400000000', '2', N'崇左市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '460000000000', '1', N'海南省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('460000000000', '460100000000', '2', N'海口市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('460000000000', '460200000000', '2', N'三亚市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('460000000000', '469000000000', '2', N'省直辖县级行政区划', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '500000000000', '1', N'重庆市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('500000000000', '500100000000', '2', N'重庆市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('500000000000', '500200000000', '2', N'县', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '510000000000', '1', N'四川省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '510100000000', '2', N'成都市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '510300000000', '2', N'自贡市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '510400000000', '2', N'攀枝花市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '510500000000', '2', N'泸州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '510600000000', '2', N'德阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '510700000000', '2', N'绵阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '510800000000', '2', N'广元市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '510900000000', '2', N'遂宁市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511000000000', '2', N'内江市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511100000000', '2', N'乐山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511300000000', '2', N'南充市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511400000000', '2', N'眉山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511500000000', '2', N'宜宾市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511600000000', '2', N'广安市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511700000000', '2', N'达州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511800000000', '2', N'雅安市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '511900000000', '2', N'巴中市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '512000000000', '2', N'资阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '513200000000', '2', N'阿坝藏族羌族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '513300000000', '2', N'甘孜藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('510000000000', '513400000000', '2', N'凉山彝族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '520000000000', '1', N'贵州省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '520100000000', '2', N'贵阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '520200000000', '2', N'六盘水市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '520300000000', '2', N'遵义市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '520400000000', '2', N'安顺市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '522200000000', '2', N'铜仁地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '522300000000', '2', N'黔西南布依族苗族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '522400000000', '2', N'毕节地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '522600000000', '2', N'黔东南苗族侗族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('520000000000', '522700000000', '2', N'黔南布依族苗族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '530000000000', '1', N'云南省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '530100000000', '2', N'昆明市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '530300000000', '2', N'曲靖市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '530400000000', '2', N'玉溪市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '530500000000', '2', N'保山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '530600000000', '2', N'昭通市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '530700000000', '2', N'丽江市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '530800000000', '2', N'普洱市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '530900000000', '2', N'临沧市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '532300000000', '2', N'楚雄彝族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '532500000000', '2', N'红河哈尼族彝族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '532600000000', '2', N'文山壮族苗族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '532800000000', '2', N'西双版纳傣族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '532900000000', '2', N'大理白族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '533100000000', '2', N'德宏傣族景颇族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '533300000000', '2', N'怒江傈僳族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('530000000000', '533400000000', '2', N'迪庆藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '540000000000', '1', N'西藏自治区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('540000000000', '540100000000', '2', N'拉萨市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('540000000000', '542100000000', '2', N'昌都地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('540000000000', '542200000000', '2', N'山南地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('540000000000', '542300000000', '2', N'日喀则地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('540000000000', '542400000000', '2', N'那曲地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('540000000000', '542500000000', '2', N'阿里地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('540000000000', '542600000000', '2', N'林芝地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '610000000000', '1', N'陕西省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610100000000', '2', N'西安市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610200000000', '2', N'铜川市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610300000000', '2', N'宝鸡市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610400000000', '2', N'咸阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610500000000', '2', N'渭南市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610600000000', '2', N'延安市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610700000000', '2', N'汉中市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610800000000', '2', N'榆林市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '610900000000', '2', N'安康市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('610000000000', '611000000000', '2', N'商洛市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '620000000000', '1', N'甘肃省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620100000000', '2', N'兰州市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620200000000', '2', N'嘉峪关市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620300000000', '2', N'金昌市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620400000000', '2', N'白银市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620500000000', '2', N'天水市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620600000000', '2', N'武威市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620700000000', '2', N'张掖市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620800000000', '2', N'平凉市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '620900000000', '2', N'酒泉市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '621000000000', '2', N'庆阳市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '621100000000', '2', N'定西市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '621200000000', '2', N'陇南市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '622900000000', '2', N'临夏回族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('620000000000', '623000000000', '2', N'甘南藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '630000000000', '1', N'青海省', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('630000000000', '630100000000', '2', N'西宁市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('630000000000', '632100000000', '2', N'海东地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('630000000000', '632200000000', '2', N'海北藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('630000000000', '632300000000', '2', N'黄南藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('630000000000', '632500000000', '2', N'海南藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('630000000000', '632600000000', '2', N'果洛藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('630000000000', '632700000000', '2', N'玉树藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('630000000000', '632800000000', '2', N'海西蒙古族藏族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '640000000000', '1', N'宁夏回族自治区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('640000000000', '640100000000', '2', N'银川市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('640000000000', '640200000000', '2', N'石嘴山市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('640000000000', '640300000000', '2', N'吴忠市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('640000000000', '640400000000', '2', N'固原市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('640000000000', '640500000000', '2', N'中卫市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('000000000000', '650000000000', '1', N'新疆维吾尔自治区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '650100000000', '2', N'乌鲁木齐市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '650200000000', '2', N'克拉玛依市', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '652100000000', '2', N'吐鲁番地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '652200000000', '2', N'哈密地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '652300000000', '2', N'昌吉回族自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '652700000000', '2', N'博尔塔拉蒙古自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '652800000000', '2', N'巴音郭楞蒙古自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '652900000000', '2', N'阿克苏地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '653000000000', '2', N'克孜勒苏柯尔克孜自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '653100000000', '2', N'喀什地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '653200000000', '2', N'和田地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '654000000000', '2', N'伊犁哈萨克自治州', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '654200000000', '2', N'塔城地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '654300000000', '2', N'阿勒泰地区', '000', null);
+INSERT INTO [dbo].[PCCTV] VALUES ('650000000000', '659000000000', '2', N'自治区直辖县级行政区划', '000', null);
+GO
+COMMIT
+GO
+
+
+-- ----------------------------
+--  Primary key structure for table GPS_USER
+-- ----------------------------
+ALTER TABLE [dbo].[GPS_USER] ADD
+	CONSTRAINT [PK__GPS_USER__F3BEEBFFD03554F0] PRIMARY KEY CLUSTERED ([USER_ID]) 
+	WITH (PAD_INDEX = OFF,
+		IGNORE_DUP_KEY = OFF,
+		ALLOW_ROW_LOCKS = ON,
+		ALLOW_PAGE_LOCKS = ON)
+	ON [default]
+GO
+
+-- ----------------------------
+--  Primary key structure for table GPS_CHARGE
+-- ----------------------------
+ALTER TABLE [dbo].[GPS_CHARGE] ADD
+	CONSTRAINT [PK__GPS_CHAR__3214EC2763BEBDE9] PRIMARY KEY CLUSTERED ([ID]) 
+	WITH (PAD_INDEX = OFF,
+		IGNORE_DUP_KEY = OFF,
+		ALLOW_ROW_LOCKS = ON,
+		ALLOW_PAGE_LOCKS = ON)
+	ON [default]
+GO
+
+-- ----------------------------
+--  Primary key structure for table GPS_EDI
+-- ----------------------------
+ALTER TABLE [dbo].[GPS_EDI] ADD
+	CONSTRAINT [PK__GPS_CHAR__3214EC27A72C08F0] PRIMARY KEY CLUSTERED ([ID]) 
+	WITH (PAD_INDEX = OFF,
+		IGNORE_DUP_KEY = OFF,
+		ALLOW_ROW_LOCKS = ON,
+		ALLOW_PAGE_LOCKS = ON)
+	ON [default]
+GO
+
+-- ----------------------------
+--  Primary key structure for table VIHICLE_DATA
+-- ----------------------------
+ALTER TABLE [dbo].[VIHICLE_DATA] ADD
+	CONSTRAINT [PK__VIHICLE___3214EC2757A8C905] PRIMARY KEY CLUSTERED ([ID]) 
+	WITH (PAD_INDEX = OFF,
+		IGNORE_DUP_KEY = OFF,
+		ALLOW_ROW_LOCKS = ON,
+		ALLOW_PAGE_LOCKS = ON)
+	ON [default]
+GO
+
+-- ----------------------------
+--  Primary key structure for table VIHICLE_P_P
+-- ----------------------------
+ALTER TABLE [dbo].[VIHICLE_P_P] ADD
+	CONSTRAINT [PK__VIHICLE___3214EC27862BCCCC] PRIMARY KEY CLUSTERED ([ID]) 
+	WITH (PAD_INDEX = OFF,
+		IGNORE_DUP_KEY = OFF,
+		ALLOW_ROW_LOCKS = ON,
+		ALLOW_PAGE_LOCKS = ON)
+	ON [default]
+GO
+
+-- ----------------------------
+--  Primary key structure for table PCCTV
+-- ----------------------------
+ALTER TABLE [dbo].[PCCTV] ADD
+	CONSTRAINT [PK__PCCTV__3213E83FEE94ED59] PRIMARY KEY CLUSTERED ([id]) 
+	WITH (PAD_INDEX = OFF,
+		IGNORE_DUP_KEY = OFF,
+		ALLOW_ROW_LOCKS = ON,
+		ALLOW_PAGE_LOCKS = ON)
+	ON [default]
+GO
+
+-- ----------------------------
+--  Options for table GPS_USER
+-- ----------------------------
+ALTER TABLE [dbo].[GPS_USER] SET (LOCK_ESCALATION = TABLE)
+GO
+
+-- ----------------------------
+--  Options for table GPS_CHARGE
+-- ----------------------------
+ALTER TABLE [dbo].[GPS_CHARGE] SET (LOCK_ESCALATION = TABLE)
+GO
+
+-- ----------------------------
+--  Options for table GPS_EDI
+-- ----------------------------
+ALTER TABLE [dbo].[GPS_EDI] SET (LOCK_ESCALATION = TABLE)
+GO
+
+-- ----------------------------
+--  Options for table VIHICLE_DATA
+-- ----------------------------
+ALTER TABLE [dbo].[VIHICLE_DATA] SET (LOCK_ESCALATION = TABLE)
+GO
+
+-- ----------------------------
+--  Options for table VIHICLE_P_P
+-- ----------------------------
+ALTER TABLE [dbo].[VIHICLE_P_P] SET (LOCK_ESCALATION = TABLE)
+GO
+
+-- ----------------------------
+--  Options for table PCCTV
+-- ----------------------------
+ALTER TABLE [dbo].[PCCTV] SET (LOCK_ESCALATION = TABLE)
+GO
+

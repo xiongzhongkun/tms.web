@@ -1,0 +1,303 @@
+﻿<div class="widget-box collapsed">
+    <div class="widget-header">
+        <h4 class="widget-title">二、登录账号</h4>
+        <div class="widget-toolbar">
+            <a href="#" data-action="collapse">
+                <i class="ace-icon fa fa-chevron-down"></i>
+            </a>
+        </div>
+    </div>
+    <div class="widget-body" style="display: none;">
+        <div class="widget-main">
+            <div class="form-horizontal">
+                <div class="modal-body">
+                    <div class="col-xs-5">
+
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="input-group pull-right">
+                            <span class="input-group-btn">
+                                <a role="button" class="btn btn-success btn-sm pull-right" onclick="NewAccountModal_click()" href="javascript:void(0)">
+                                    <span class="ace-icon fa fa-pencil-square-o icon-on-right bigger-110"></span>
+                                    新增
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="clearfix">
+                                <div class="pull-left tableTools-container"></div>
+                            </div>
+
+
+                            <!-- div.table-responsive -->
+                            <!-- div.dataTables_borderWrap -->
+
+                            <table id="dynamic-tableAccountList" class="table table-striped table-bordered table-hover" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>登录用户名</th>
+                                        <th>密码</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="my-modalAccount" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #EFF3F8;height:50px;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="smaller lighter blue no-margin">新增登录用户</h4>
+            </div>
+            <form class="form-horizontal" action="/useraccount/save" data-ajax="true" data-ajax-begin="ajax_OnBegin" data-ajax-complete="ajax_OnComplete" data-ajax-failure="failed_resp" data-ajax-method="POST" data-ajax-success="handle_resp" method="post">
+                <div class="modal-body">
+
+                <div class="form-group">
+                        <label class="col-xs-2 control-label " for="form-field-1"> 登录用户名： </label>
+                        <div class="col-xs-10">
+                            <input type="text" name="account" id="account" class = "col-xs-10 col-sm-10 " placeholder="请输入登录用户名"/>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-xs-2 control-label " for="form-field-1"> 密码： </label>
+                        <div class="col-xs-10">
+                            <input type="password" name="pwd" id="pwd" class = "col-xs-10 col-sm-10 " placeholder="请输入密码"/>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-xs-2 control-label " for="form-field-1"> 用户角色： </label>
+                        <div class="col-xs-10">
+                            
+                        </div>
+                </div>
+                    </div>
+                <input type="hidden" value="@ViewBag.gpsuserid" name="GpsUserId" />
+                <input type="hidden" value="" id="hdn_company" name="hdn_company" />
+                <input type="hidden" value="dynamic-tableAccountList" name="hdn_target" />
+                <input type="hidden" value="操作成功" name="hdn_msg" />
+                <input type="hidden" value="列表" name="hdn_targetType" />
+                
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-info" type="submit">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Save（保存）
+                    </button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Close（关闭）
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<div id="my-modalchangepwd" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #EFF3F8;height:50px;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="smaller lighter blue no-margin">修改密码</h4>
+            </div>
+            <form class="form-horizontal" action="/useraccount/save" data-ajax="true" data-ajax-begin="ajax_OnBegin" data-ajax-complete="ajax_OnComplete" data-ajax-failure="failed_resp" data-ajax-method="POST" data-ajax-success="handle_resp" method="post">
+                <div class="modal-body">
+
+                <div class="form-group">
+                        <label class="col-xs-2 control-label " for="form-field-1"> 登录用户名： </label>
+                        <div class="col-xs-10">
+                            <input type="text" id="accountfornewpwd" readonly="readonly" class = "col-xs-10 col-sm-10 " />
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-xs-2 control-label " for="form-field-1"> 新密码： </label>
+                        <div class="col-xs-10">
+                            <input type="password" id="newpwd" class = "col-xs-10 col-sm-10 " placeholder="请输入新密码"/>
+                        </div>
+                </div>
+
+                    </div>
+                <input type="hidden" id="pwdid"/>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-info" type="button" onclick="sendnewpwd_click()">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Save（保存）
+                    </button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+                        <i class="ace-icon fa fa-times"></i>
+                        Close（关闭）
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script>
+    $(document).ready(function (){
+        datatable_load();
+    });
+
+    function NewAccountModal_click() {
+            $('#my-modalAccount  #account').val("");
+            $('#my-modalAccount  #pwd').val("");
+
+            $('#my-modalAccount').modal('show');
+    }
+
+
+    function datatable_load(){
+        var _dynamictableAccountList = $('#dynamic-tableAccountList').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "ordering": false,
+            "pagingType": "full_numbers",
+            "language": {
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "目前还没有任何数据",
+                "info": "当前第：_PAGE_ 页 共：_PAGES_ 页",
+                "infoEmpty": "目前还没有任何数据",
+                "sSearch": "搜索",
+                "oPaginate": {
+                    "sFirst": "第一页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "最后一页"
+                }
+            },
+            "ajax": {
+                "url": "/useraccount/getlist?gpsuserid=@ViewBag.gpsuserid",
+                "type": "POST"
+            },
+            "columns": [
+                {
+                    "data": "Id", "render": function (value, style, item, col) {
+                        return col.row + 1;
+                    }
+                },
+                {
+                    "data": "Account"
+                },
+                {
+                    "data": "Pwd"
+                },
+
+                { "data": "Id" }
+            ],
+            "columnDefs": [
+            {
+                "targets": -1,//-1表示最后一行
+                render: function (data, type, full, meta) {
+                    var _btns = "<div class=\"hidden-sm hidden-xs action-buttons\">";
+
+
+                    _btns += "<a class=\"green\" href=\"javascript:void(0)\" onclick=\"ChangePwdModal_click('" + data + "','"+full.Account+"')\">";
+                    _btns += "<i class=\"ace-icon fa fa-pencil bigger-130\"></i>修改密码";
+                    _btns += "</a>";
+
+                    _btns += "<a class=\"red\" href=\"javascript:void(0)\" onclick=\"dialogAccountConfirm_click('" + data + "')\">";
+                    _btns += "<i class=\"ace-icon fa fa-trash-o bigger-130\"></i>删除";
+                    _btns += "</a>";
+
+                    _btns += "</div>";
+                    return _btns;
+             }
+            }]
+        });
+        $("#dynamic-tableAccountList_length").parent().parent().hide();
+    }
+
+    function delete_account(id) {
+                $.axs('@Url.Action("Delete", "UserAccount")', { id: id }, function (data) {
+                    if (data.flag) {
+                        $('#dynamic-tableAccountList').DataTable().ajax.reload();
+                    } else {
+                        bootbox.dialog({
+                            message: data.msg,
+                            buttons: {
+                                "success": {
+                                    "label": "确定",
+                                    "className": "btn-sm btn-primary"
+                                }
+                            }
+                        });
+                    }
+                });
+    }
+
+    function dialogAccountConfirm_click(id) {
+            $("#dialog-confirm").removeClass('hide').dialog({
+                resizable: false,
+                width: '320',
+                modal: true,
+                title: "是否清空该数据？",
+                title_html: true,
+                buttons: [
+                {
+                    html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>&nbsp; Del（删除）",
+                    "class": "btn btn-danger btn-minier",
+                    click: function () {
+                        delete_account(id);
+                        $(this).dialog("close");
+                    }
+                }
+                ,
+                {
+                    html: "<i class='ace-icon fa fa-times bigger-110'></i>&nbsp; Cancel（取消）",
+                    "class": "btn btn-minier",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                }
+                ]
+            });
+        }
+
+        function ChangePwdModal_click(id,account){
+            $("#accountfornewpwd").val(account);
+            $("#pwdid").val(id);
+            $("#newpwd").val("");
+            $("#my-modalchangepwd").modal("show");
+        }
+
+        function sendnewpwd_click(){
+            var id= $("#pwdid").val();
+            var pwd = $("#newpwd").val();
+            if(!id|| !pwd){
+                return;
+            }
+            $.axs('@Url.Action("ReSetPwd","UserAccount")', { id: id,pwd:pwd }, function(res) {
+                if (res.flag) {
+                    $('#dynamic-tableAccountList').DataTable().ajax.reload();
+                    $("#my-modalchangepwd").modal("hide");
+                } else {
+                    bootbox.dialog({
+                        message: res.msg,
+                        buttons: {
+                            "success": {
+                                "label": "确定",
+                                "className": "btn-sm btn-primary"
+                            }
+                        }
+                    });
+                }
+            });
+        }
+</script>
+    

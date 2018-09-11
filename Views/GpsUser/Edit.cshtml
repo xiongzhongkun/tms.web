@@ -1,0 +1,176 @@
+﻿@model tms.Models.GpsUser
+@{
+    ViewData["Title"] = Model.UserName;
+}
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="page-content">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="/home/index">首页</a>
+                    </li>
+                    <li>
+                        <a href="/gpsuser/list">用户管理</a>
+                    </li>
+                    <li class="active">用户编辑</li>
+                </ul><!-- /.breadcrumb -->
+            </div>
+            <div class="page-header">
+                <h1>
+                    用户编辑<small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        基本信息、登录账号
+                    </small>
+                </h1>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="widget-box">
+                        <div class="widget-header">
+                            <h4 class="widget-title">一、基本参数</h4>
+                            <div class="widget-toolbar">
+                                <a href="#" data-action="collapse">
+                                    <i class="ace-icon fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-body" style="display: block;">
+                            <div class="widget-main">
+                                <form class="form-horizontal" action="/gpsuser/save" data-ajax="true" data-ajax-begin="ajax_OnBegin" data-ajax-complete="ajax_OnComplete" data-ajax-failure="failed_resp" data-ajax-method="POST" data-ajax-success="handle_resp" method="post">
+                                    @Html.HiddenFor(w=>w.UserId)
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 单位全称： </label>
+                                    <div class="col-xs-4">
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入单位全称" })
+                                    </div>
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 单位简称： </label>
+                                    <div class="col-xs-4">
+                                        @Html.TextBoxFor(m => m.UserShortname, new { @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入单位简称" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 单位信用代码：</label>
+                                    <div class="col-xs-4">
+                                        @Html.TextBoxFor(m => m.UserCode, new { @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入单位信用代码" })
+                                    </div>
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	单位余额： </label>
+                                    <div class="col-xs-4">
+                                        @Html.TextBoxFor(m => m.UserBalance, new { @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入单位余额" })
+                                    </div>
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	单位地址省： </label>
+                                    <div class="col-xs-4">
+                                        @Html.DropDownListFor(m => m.UserAddP, ViewData["ddlprovince"] as SelectList, new { @class = "chosen-select form-control", @style = "width:83%" })
+                                    </div>
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	单位地址市： </label>
+                                    <div class="col-xs-4">
+                                        @Html.DropDownListFor(m => m.UserAddC, ViewData["ddlcity"] as SelectList, new { @class = "chosen-select form-control", @style = "width:83%" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	单位地址： </label>
+                                    <div class="col-xs-4">
+                                        @Html.TextBoxFor(m => m.UserAddD, new { @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入单位地址" })
+                                    </div>
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	联系人： </label>
+                                    <div class="col-xs-4">
+                                        @Html.TextBoxFor(m => m.UserCon, new { @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入联系人" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	联系号码： </label>
+                                    <div class="col-xs-4">
+                                        @Html.TextBoxFor(m => m.UserConTel, new { @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入联系号码" })
+                                    </div>
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	联系邮箱： </label>
+                                    <div class="col-xs-4">
+                                        @Html.TextBoxFor(m => m.UserConEmail, new { @class = "col-xs-10 col-sm-10 ", @placeholder = "请输入联系邮箱" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	单位状态： </label>
+                                    <div class="col-xs-4">
+                                        @{
+
+                                            SelectList sl = new SelectList(new List<SelectListItem>{
+                                                new SelectListItem { Selected = true, Text = "请选择", Value = "-1"},
+                                                new SelectListItem { Selected = false, Text = "正常", Value = "正常"},
+                                                new SelectListItem { Selected = false, Text = "作废", Value = "作废"},
+                                            },"Value","Text");
+
+                                        }
+                                        @Html.DropDownListFor(m=>m.UserStatus,sl ,new { @class="chosen-select form-control",@style="width:83%"})
+                                    </div>
+                                    <label class="col-xs-2 control-label " for="form-field-1"> 	接口状态： </label>
+                                    <div class="col-xs-4">
+                                        @{
+
+                                            sl = new SelectList(new List<SelectListItem>{
+                                                new SelectListItem { Selected = true, Text = "请选择", Value = "-1"},
+                                                new SelectListItem { Selected = false, Text = "连接", Value = "连接"},
+                                                new SelectListItem { Selected = false, Text = "断开", Value = "断开"},
+                                            },"Value","Text");
+
+                                        }
+                                        @Html.DropDownListFor(m=>m.EdiStatus,sl ,new { @class="chosen-select form-control",@style="width:83%"})
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="clearfix form-actions">
+                                    <div class="col-md-offset-5 col-md-9">
+                                        <button class="btn btn-info" type="submit">
+                                            <i class="ace-icon fa fa-check bigger-110"></i>
+                                            Save（保存）
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="hidden" value="" id="hdn_company" name="hdn_company" />
+                                <input type="hidden" value="" name="hdn_target" />
+                                <input type="hidden" value="更新成功" name="hdn_msg" />
+                                <input type="hidden" value="不跳转" name="hdn_targetType" />
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("AccountList",new { id=Model.UserId})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{ 
+    <script src="~/ace/js/jquery.dataTables.min.js"></script>
+    <script src="~/ace/js/jquery.dataTables.bootstrap.min.js"></script>
+    <script src="~/ace/js/dataTables.select.min.js"></script>
+    <script src="~/ace/js/dataTables.buttons.min.js"></script>
+
+<script>$("#UserAddP").change(function() {
+        var _value = $(this).children('option:selected').val();
+        var _text = $(this).children('option:selected').text();
+        $("#UserAddC").html("");
+        $.axs('@Url.Action("GetCityByID","Public")', { id: _value }, function(res) {
+            if (res.flag) {
+                for (var i = 0; i < res.data.length; i++) {
+                    var data=res.data;
+                    $("#UserAddC").append("<option value='" + data[i].Id+"'>" + data[i].Pcctvname + "</option>");
+                }
+            } else {
+                bootbox.dialog({
+                    message: res.msg,
+                    buttons: {
+                        "success": {
+                            "label": "确定",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+                });
+            }
+        });
+});</script>
+}
