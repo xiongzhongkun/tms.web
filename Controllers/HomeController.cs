@@ -12,7 +12,7 @@ namespace tms.Controllers
     {
         public IActionResult Index()
         {
-            var abc = HttpContext.Session["abc"]
+            //var abc = HttpContext.Session["abc"]
             return View();
         }
     }
